@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <link href="./dist/css/table.css" rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div ng-app="cricketApp" ng-controller="scoreController">
+  <div id="menu-bar" ng-include="'mainPage.html'"></div>
+    <div class="col-md-10 col-md-offset-1">
+         <div class="panel panel-default panel-table">
+           <div class="panel-heading">
+             <div class="row">
+               <div class="col col-xs-4 text-left">
+                 <h3 class="panel-title">Runs per over</h3>
+               </div>
+               <div class="col col-xs-4 text-right">
+                    <div class="form-group">
+                      <div class="col col-xs-1 text-right ">
+                        <label for="usr">Size:</label>
+                      </div>
+                      <div class="col col-xs-1 "></div>
+                      <div class="col col-xs-1 ">
+                        <select  ng-model="page.selectedSize" ng-options="pageSingle as pageSingle.key for pageSingle in page.pagesizes track by pageSingle.key" ng-change="getPageDetails()">
+                        </select>
+                      </div>
+                    </div>
+               </div>
+               <div class="col col-xs-4 text-right">
+                 <button type="button" class="btn btn-sm btn-primary btn-create " data-toggle="modal" data-target="#myModal" ng-click="changeTextForCreate()">Create</button>
+               </div>
+             </div>
+           </div>
+           <div class="panel-body">
+             <div id="scoreTable">
+             <table  class="table table-bordered table-list table-hover">
+               <thead>
+                 <tr>
+                   <th><em class="fa fa-cog" ></em></th>
+                     <th class="hidden-xs">ID</th>
+                     <th>Player</th>
+                     <th>Team</th>
+                     <th>1</th>
+                     <th>2</th>
+                     <th>3</th>
+                     <th>4</th>
+                     <th>5</th>
+                     <th>6</th>
+                     <th>7</th>
+                     <th>8</th>
+                     <th>9</th>
+                     <th>10</th>
+                     <th>11</th>
+                     <th>12</th>
+                     <th>13</th>
+                     <th>14</th>
+                     <th>15</th>
+                     <th>16</th>
+                     <th>17</th>
+                     <th>18</th>
+                     <th>19</th>
+                     <th>20</th>
+                     <th>21</th>
+                     <th>22</th>
+                     <th>23</th>
+                     <th>24</th>
+                     <th>25</th>
+                     <th>26</th>
+                     <th>27</th>
+                     <th>28</th>
+                     <th>29</th>
+                     <th>30</th>
+                     <th>31</th>
+                     <th>32</th>
+                     <th>33</th>
+                     <th>34</th>
+                     <th>35</th>
+                     <th>36</th>
+                     <th>37</th>
+                     <th>38</th>
+                     <th>39</th>
+                     <th>40</th>
+                     <th>41</th>
+                     <th>42</th>
+                     <th>43</th>
+                     <th>44</th>
+                     <th>45</th>
+                     <th>46</th>
+                     <th>47</th>
+                     <th>48</th>
+                     <th>49</th>
+                     <th>50</th>
+
+                 </tr>
+               </thead>
+               <tbody>
+                       <tr ng-repeat="x in players" >
+                         <td>
+                           <a class="btn btn-default" ng-click="loadEditDetails(x.id)" data-toggle="modal" data-target="#myModal" ><em class="fa fa-pencil"></em></a>
+                           <a class="btn btn-danger" ng-click="prepareForDelete(x.id)" data-toggle="modal" data-target="#deleteModal"><em class="fa fa-trash"></em></a>
+                         </td>
+                         <td class="hidden-xs"><span ng-bind="x.id"></td>
+                         <td><span ng-bind="x.player.name"></td>
+                          <td><span ng-bind="x.againstTeam.name"></td>
+                          <td><span ng-bind="x.over1"></td>
+                          <td><span ng-bind="x.over2"></td>
+                          <td><span ng-bind="x.over3"></td>
+                          <td><span ng-bind="x.over4"></td>
+                          <td><span ng-bind="x.over5"></td>
+                          <td><span ng-bind="x.over6"></td>
+                          <td><span ng-bind="x.over7"></td>
+                          <td><span ng-bind="x.over8"></td>
+                          <td><span ng-bind="x.over9"></td>
+                          <td><span ng-bind="x.over10"></td>
+                          <td><span ng-bind="x.over11"></td>
+                          <td><span ng-bind="x.over12"></td>
+                          <td><span ng-bind="x.over13"></td>
+                          <td><span ng-bind="x.over14"></td>
+                          <td><span ng-bind="x.over15"></td>
+                          <td><span ng-bind="x.over16"></td>
+                          <td><span ng-bind="x.over17"></td>
+                          <td><span ng-bind="x.over18"></td>
+                          <td><span ng-bind="x.over19"></td>
+                          <td><span ng-bind="x.over20"></td>
+                          <td><span ng-bind="x.over21"></td>
+                          <td><span ng-bind="x.over22"></td>
+                          <td><span ng-bind="x.over23"></td>
+                          <td><span ng-bind="x.over24"></td>
+                          <td><span ng-bind="x.over25"></td>
+                          <td><span ng-bind="x.over26"></td>
+                          <td><span ng-bind="x.over27"></td>
+                          <td><span ng-bind="x.over28"></td>
+                          <td><span ng-bind="x.over29"></td>
+                          <td><span ng-bind="x.over30"></td>
+                          <td><span ng-bind="x.over31"></td>
+                          <td><span ng-bind="x.over32"></td>
+                          <td><span ng-bind="x.over33"></td>
+                          <td><span ng-bind="x.over34"></td>
+                          <td><span ng-bind="x.over35"></td>
+                          <td><span ng-bind="x.over36"></td>
+                          <td><span ng-bind="x.over37"></td>
+                          <td><span ng-bind="x.over38"></td>
+                          <td><span ng-bind="x.over39"></td>
+                          <td><span ng-bind="x.over40"></td>
+                          <td><span ng-bind="x.over41"></td>
+                          <td><span ng-bind="x.over42"></td>
+                          <td><span ng-bind="x.over43"></td>
+                          <td><span ng-bind="x.over44"></td>
+                          <td><span ng-bind="x.over45"></td>
+                          <td><span ng-bind="x.over46"></td>
+                          <td><span ng-bind="x.over47"></td>
+                          <td><span ng-bind="x.over48"></td>
+                          <td><span ng-bind="x.over49"></td>
+                          <td><span ng-bind="x.over50"></td>
+
+                       </tr>
+                </tbody>
+
+             </table>
+             </div>
+             <div class="panel-footer">
+                 <div class="row">
+                   <div class="col col-xs-4 text-left">Pages : <span ng-bind="totalPages"></span>
+                   </div>
+                   <div class="col col-xs-4 text-right">
+                       <div class="col col-xs-1"><span ng-bind="pageInfo.pageNumber + 1"></div>
+                       <div class="col col-xs-1">of</div>
+                       <div class="col col-xs-1"><span ng-bind="totalPages"></div>
+                   </div>
+                   <div class="col col-xs-4">
+                     <ul class="pagination">
+                        <li class="page-item" ng-show="!first" ><a ng-click="getPrevPageDetails()"  class="page-link" href="#">Previous</a></li>
+                        <li class="page-item" ng-show="!last"><a  ng-click="getNextPageDetails()" class="page-link" href="#">Next</a></li>
+                      </ul>
+                   </div>
+                 </div>
+             </div>
+           </div>
+        </div>
+
+<!-- Starting modal window for Create and Edit here -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 id = "modal-title" class="modal-title">{{singlePlayer.textForModal}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Enter Score Details </p>
+        <div class ="row">
+            <div class="col col-xs-4 ">
+              <div class="form-group">
+          	    <label for="id">ID:</label>
+          	    <input type="text" class="form-control" id="id" disabled ng-model="singlePlayer.id">
+          	  </div>
+            </div>
+        </div>
+        <div class ="row">
+            <div class="col col-xs-4 ">
+              <div class="form-group">
+                <label for="sel2">Select Player</label>
+                <select class="form-control" id="sel2" ng-model="selectedPlayer" ng-options="pageSingle as pageSingle.name for pageSingle in playerList track by pageSingle.id">
+                </select>
+          	  </div>
+            </div>
+            <div class="col col-xs-4 ">
+              <div class="form-group">
+                <label for="sel1">Team</label>
+                <select class="form-control" id="sel1" ng-model="selectedTeam" ng-options="pageSingle as pageSingle.name for pageSingle in teams track by pageSingle.id">
+                </select>
+          	  </div>
+            </div>
+        </div>
+        <div class="form-group">
+        <div class ="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over1" id="over1" placeholder="Over 1"/>
+          	</div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over2" id="over2" placeholder="Over 2"/>
+          	</div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over3" id="over3" placeholder="Over 3"/>
+          	</div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over4" id="over4" placeholder="Over 4"/>
+          	</div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over5" id="over5" placeholder="Over 5"/>
+          	</div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over6" id="over6" placeholder="Over 6"/>
+          	</div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over7" id="over7" placeholder="Over 7"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over8" id="over8" placeholder="Over 8"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over9" id="over9" placeholder="Over 9"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over10" id="over10" placeholder="Over 10"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over11" id="over11" placeholder="Over 11"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over12" id="over12" placeholder="Over 12"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over13" id="over13" placeholder="Over 13"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over14" id="over14" placeholder="Over 14"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over15" id="over15" placeholder="Over 15"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over16" id="over16" placeholder="Over 16"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over17" id="over17" placeholder="Over 17"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over18" id="over18" placeholder="Over 18"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over19" id="over19" placeholder="Over 19"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over20" id="over20" placeholder="Over 20"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over21" id="over21" placeholder="Over 21"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over22" id="over22" placeholder="Over 22"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over23" id="over23" placeholder="Over 23"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over24" id="over24" placeholder="Over 24"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over25" id="over25" placeholder="Over 25"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over26" id="over26" placeholder="Over 26"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over27" id="over27" placeholder="Over 27"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over28" id="over28" placeholder="Over 28"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over29" id="over29" placeholder="Over 29"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over30" id="over30" placeholder="Over 30"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over31" id="over31" placeholder="Over 31"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over32" id="over32" placeholder="Over 32"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over33" id="over33" placeholder="Over 33"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over34" id="over34" placeholder="Over 34"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over35" id="over35" placeholder="Over 35"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over36" id="over36" placeholder="Over 36"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over37" id="over37" placeholder="Over 37"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over38" id="over38" placeholder="Over 38"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over39" id="over39" placeholder="Over 39"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over40" id="over40" placeholder="Over 40"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over41" id="over41" placeholder="Over 41"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over42" id="over42" placeholder="Over 42"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over43" id="over43" placeholder="Over 43"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over44" id="over44" placeholder="Over 44"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over45" id="over45" placeholder="Over 45"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over46" id="over46" placeholder="Over 46"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over47" id="over47" placeholder="Over 47"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over48" id="over48" placeholder="Over 48"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over49" id="over49" placeholder="Over 49"/>
+            </div>
+            <div class="col col-xs-4">
+                <input type="text" class="form-control" ng-model="singlePlayer.over50" id="over50" placeholder="Over 50"/>
+            </div>
+          </div>
+          </div>
+        </div>
+	    </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="editPlayer()" ng-show="!singlePlayer.showCreateButton">{{singlePlayer.textForButton}}</button>
+	      <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="createPlayer()" ng-show="singlePlayer.showCreateButton">{{singlePlayer.textForButton}}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Modal Form here  -->
+
+<!--  Starting Madal for Permanent Delete Here-->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 id = "modal-title" class="modal-title">Delete Player</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this Score permanently ?</p>
+	    <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" data-dismiss="modal" ng-click="deletePlayer()" >Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ending Delete Modal here  -->
+</div>
+<script src="./js/angular/mainApp/cricketApp.js"></script>
+<script src="./js/angular/controller/scoreController.js"></script>
+</body>
+</html>

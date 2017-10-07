@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var allData = [ ['Over', 'Team1', 'Team2'],
+          ['1',  6, 1],
+          ['2',  5, 5],
+          ['3',  5,       10],
+          ['4',  5,      15]];
+
+    /*  allData = {
+    cols: [{id: 'task', label: 'Task', type: 'string'},
+           {id: 'hours', label: 'Hours per Day', type: 'number'}],
+    rows: [{c:[{v: 'Work'}, {v: 11}]},
+           {c:[{v: 'Eat'}, {v: 2}]},
+           {c:[{v: 'Commute'}, {v: 2}]},
+           {c:[{v: 'Watch TV'}, {v:2}]},
+           {c:[{v: 'Sleep'}, {v:7, f:'7.000'}]}]
+    }*/
+      function drawChart() {
+        console.log("Drawing Chart ")
+        var data = new  google.visualization.arrayToDataTable(allData);
+        var options = {
+        isStacked: false,
+          title: 'Batsman Peformance',
+          hAxis: {title: 'Over',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0, title:' Runs '}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+  <div ng-app="cricketApp" ng-controller="chartController">
+  <div id="menu-bar" ng-include="'mainPage.html'"></div>
+    <div class="form-group">
+    <div class="row">
+    <div class="col col-xs-4">
+      <label for="sel1">Select Player</label>
+      <select class="form-control" id="sel1" ng-model="selectedPlayer" ng-options="pageSingle as pageSingle.name for pageSingle in players track by pageSingle.id">
+      </select>
+    </div>
+     <div class="col col-xs-4">
+      <label for="sel1">Select Team</label>
+      <select class="form-control" id="sel1" ng-model="selectedTeam" ng-options="pageSingle as pageSingle.name for pageSingle in teams track by pageSingle.id">
+      </select>
+    </div>
+    <div class="col col-xs-4">
+          <button type="button" class="btn btn-sm btn-primary btn-create "  ng-click="loadChartData();">Search</button>
+    </div>
+  </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col col-xs-12">
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+    </div>
+      </div>
+<script src="./js/angular/mainApp/cricketApp.js"></script>
+<script src="./js/angular/controller/chartController.js"></script>
+  </body>
+</html>
